@@ -1,0 +1,42 @@
+<h2>Meus Contatos</h2>
+
+    <button class="btn btn-info" (click)="add()" [disabled]="btnDisable">Add</button>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Nome</td>
+                <td>Email</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor= "let contato of contatos">
+                <td>{{contato.id}}</td>
+                <td>
+                    <span [hidden]="contato.visibled">{{contato.nome}}</span>
+                    <input type="text" [(ngModel)]="contato.nome" [hidden]="!contato.visibled"/>
+                </td>
+                <td>
+                    <span [hidden]="contato.visibled">{{contato.email}}</span>
+                    <input type="text" [(ngModel)]="contato.email" [hidden]="!contato.visibled"/>
+                </td>
+                <td>
+                    <div [hidden]="contato.visibled" (click)="edit(contato)">
+                        <button class="btn btn-primary" [disabled]="btnDisable">edit</button>
+                    </div>
+                    <div [hidden]="!contato.visibled">
+                        <button class="btn btn-primary" (click)="save(contato)">save</button>
+                    </div>
+                </td>
+                <td>
+                    <div [hidden]="!contato.visibled">
+                        <button class="btn btn-danger" (click)="cancel(contato)"> cancel</button>
+                    </div>
+                    <div [hidden]="contato.visibled" (click)="dell(contato)">
+                        <button class="btn btn-warning" [disabled]="btnDisable"> delete</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
