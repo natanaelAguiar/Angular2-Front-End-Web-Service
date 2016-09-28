@@ -3,6 +3,7 @@ import { Component, OnInit} from '@angular/core';
 import  { Contato } from '../app-model/contato';
 import { CONTATO }  from '../app-model/mock-contatos';
 import { ContatoService } from './contato.service';
+import { CONTATOTYPES } from './contato-types-enum'
 
 @Component({
     selector: 'my-contact',
@@ -13,8 +14,13 @@ export class ContatoComponent implements OnInit {
     oldContato = new Contato();
     btnDisable: boolean = false;
     error: any;
+    contatoType = CONTATOTYPES;
 
     constructor(private contatoService: ContatoService){}
+
+keys() : Array<string> {
+    return Object.keys(this.contatoType);
+  }
 
     getHeroes(){
         // this.contatoService.getContatos().then(contatos => this.contatos = contatos);

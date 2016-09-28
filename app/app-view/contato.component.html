@@ -8,6 +8,7 @@
                 <td>Id</td>
                 <td>Nome</td>
                 <td>Email</td>
+                <td>Tipo Contato</td>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,12 @@
                 <td>
                     <span [hidden]="contato.visibled">{{contato.email}}</span>
                     <input type="text" [(ngModel)]="contato.email" [hidden]="!contato.visibled"/>
+                </td>
+                <td>
+                    <span [hidden]="contato.visibled">{{contato.tipoContato}}</span>
+                     <select [hidden]="!contato.visibled" [(ngModel)]="contato.tipoContato">
+                    <option *ngFor="#key of keys()" [value]="key">{{key}}</option>
+                    </select>
                 </td>
                 <td>
                     <div [hidden]="contato.visibled" (click)="edit(contato)">
